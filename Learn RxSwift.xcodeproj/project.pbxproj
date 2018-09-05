@@ -16,6 +16,8 @@
 		8E47960A213CDA9500E81ECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E479608213CDA9500E81ECC /* LaunchScreen.storyboard */; };
 		8E479615213CDA9500E81ECC /* Learn_RxSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E479614213CDA9500E81ECC /* Learn_RxSwiftTests.swift */; };
 		8E479621213D0D9700E81ECC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E479620213D0D9700E81ECC /* ListViewController.swift */; };
+		8EA07DC4213FABBB00A6C360 /* URLSessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA07DC3213FABBB00A6C360 /* URLSessionHelper.swift */; };
+		8EA07DC6213FB2B900A6C360 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA07DC5213FB2B900A6C360 /* Constant.swift */; };
 		EE5F2ED1FD78F9BACA36D42C /* Pods_Learn_RxSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9C71FEAB3A794FDC7EA0B /* Pods_Learn_RxSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		8E479614213CDA9500E81ECC /* Learn_RxSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learn_RxSwiftTests.swift; sourceTree = "<group>"; };
 		8E479616213CDA9500E81ECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E479620213D0D9700E81ECC /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		8EA07DC3213FABBB00A6C360 /* URLSessionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHelper.swift; sourceTree = "<group>"; };
+		8EA07DC5213FB2B900A6C360 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BFC9C71FEAB3A794FDC7EA0B /* Pods_Learn_RxSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Learn_RxSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C645F9B6515997A7AC5864EE /* Pods-Learn RxSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Learn RxSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Learn RxSwiftTests/Pods-Learn RxSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		DFAD30B0681249DEC44F5EA9 /* Pods_Learn_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Learn_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,8 @@
 				8E47960B213CDA9500E81ECC /* Info.plist */,
 				8E479603213CDA8E00E81ECC /* Learn_RxSwift.xcdatamodeld */,
 				8E479620213D0D9700E81ECC /* ListViewController.swift */,
+				8EA07DC3213FABBB00A6C360 /* URLSessionHelper.swift */,
+				8EA07DC5213FB2B900A6C360 /* Constant.swift */,
 			);
 			path = "Learn RxSwift";
 			sourceTree = "<group>";
@@ -304,7 +310,9 @@
 				8E4795FF213CDA8E00E81ECC /* ViewController.swift in Sources */,
 				8E479605213CDA8E00E81ECC /* Learn_RxSwift.xcdatamodeld in Sources */,
 				8E479621213D0D9700E81ECC /* ListViewController.swift in Sources */,
+				8EA07DC4213FABBB00A6C360 /* URLSessionHelper.swift in Sources */,
 				8E4795FD213CDA8E00E81ECC /* AppDelegate.swift in Sources */,
+				8EA07DC6213FB2B900A6C360 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

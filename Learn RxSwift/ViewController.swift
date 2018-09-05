@@ -39,18 +39,59 @@ class ViewController: UIViewController {
     enum SubscriptionError: Error {
         case OhNooo
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
         setupUI()
+        let requestParams = [
+            "idpropinsi": "73",
+        ]
+//        URLSession.shared.request(url: Constant.getKabupaten, method: .get, parameters: requestParams) { (data, urlResponse, error) in
+//            if let responseData = data {
+//                do {
+//                    let responseJson = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! [String : Any]
+//                    print("response \(responseJson)")
+//                } catch let error as NSError {
+//                    print("error parse response \(error), \(error.userInfo)")
+//                }
+//            }
+//        }
+        
+        URLSession.shared.request(url: Constant.getKabupaten, method: .get, parameters: requestParams)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (userInfo) in
+                print("response \(userInfo)")
+            }, onError: { (error) in
+                print("error \(error),")
+            }).disposed(by: disposeBag)
+        
+        let searchString = BehaviorRelay(value: "")
+        
+        searchString
+            .observeOn(SerialDispatchQueueScheduler(qos: .background))
+            .map({ (value) -> String in
+                print("mapping in mainThread \(Thread.isMainThread)")
+                return value.lowercased()
+            })
+            .filter({ (value) -> Bool in
+                return value.count > 2
+            })
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { value in
+                print("\(value) is mainThread \(Thread.isMainThread)")
+            })
+            .disposed(by: disposeBag)
+        
+        searchString.accept("main")
+        DispatchQueue.global(qos: .background).async {
+            searchString.accept("background")
+        }
         
         textField.rx.text.orEmpty.debounce(2, scheduler: MainScheduler.instance).subscribe(onNext: { text in
             print("text \(text)")
         }).disposed(by: disposeBag)
-    
+        
         btnLogin.rx.tap.subscribe(onNext: { _ in
             self.navigationController?.pushViewController(ListViewController(), animated: true)
         }).disposed(by: disposeBag)
@@ -70,9 +111,9 @@ class ViewController: UIViewController {
             btnLogin.widthAnchor.constraint(equalToConstant: 100),
             btnLogin.heightAnchor.constraint(equalToConstant: 40),
             btnLogin.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 10)
-        ])
+            ])
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
