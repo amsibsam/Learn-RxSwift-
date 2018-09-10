@@ -46,16 +46,6 @@ class ViewController: UIViewController {
         let requestParams = [
             "idpropinsi": "73",
         ]
-//        URLSession.shared.request(url: Constant.getKabupaten, method: .get, parameters: requestParams) { (data, urlResponse, error) in
-//            if let responseData = data {
-//                do {
-//                    let responseJson = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableLeaves) as! [String : Any]
-//                    print("response \(responseJson)")
-//                } catch let error as NSError {
-//                    print("error parse response \(error), \(error.userInfo)")
-//                }
-//            }
-//        }
         
         URLSession.shared.request(url: Constant.getKabupaten, method: .get, parameters: requestParams)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -65,9 +55,9 @@ class ViewController: UIViewController {
             }, onError: { (error) in
                 print("error \(error),")
             }).disposed(by: disposeBag)
-        
+
         let searchString = BehaviorRelay(value: "")
-        
+
         searchString
             .observeOn(SerialDispatchQueueScheduler(qos: .background))
             .map({ (value) -> String in
@@ -82,16 +72,16 @@ class ViewController: UIViewController {
                 print("\(value) is mainThread \(Thread.isMainThread)")
             })
             .disposed(by: disposeBag)
-        
+
         searchString.accept("main")
         DispatchQueue.global(qos: .background).async {
             searchString.accept("background")
         }
-        
+
         textField.rx.text.orEmpty.debounce(2, scheduler: MainScheduler.instance).subscribe(onNext: { text in
             print("text \(text)")
         }).disposed(by: disposeBag)
-        
+
         btnLogin.rx.tap.subscribe(onNext: { _ in
             self.navigationController?.pushViewController(ListViewController(), animated: true)
         }).disposed(by: disposeBag)
